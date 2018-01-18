@@ -1,0 +1,24 @@
+{
+    "artworkUrl60":"http://is4.mzstatic.com/image/thumb/Publication3/v4/6c/83/20/6c832043-d126-a108-2b81-e6dad1db8ac0/source/60x60bb.jpg",
+    "artworkUrl100":"http://is4.mzstatic.com/image/thumb/Publication3/v4/6c/83/20/6c832043-d126-a108-2b81-e6dad1db8ac0/source/100x100bb.jpg",
+    "artistViewUrl":"https://itunes.apple.com/us/artist/ernest-hemingway/id2122513?mt=11&uo=4",
+    "trackViewUrl":"https://itunes.apple.com/us/book/the-old-man-and-the-sea/id381645838?mt=11&uo=4",
+    "trackCensoredName":"The Old Man and the Sea",
+    "fileSizeBytes":5990135,
+    "currency":"USD",
+    "artistId":2122513,
+    "artistName":"Ernest Hemingway",
+    "genres":["Classics", "Books", "Fiction & Literature", "Literary"],
+    "kind":"ebook",
+    "price":9.99,
+    "description":"The last novel Ernest Hemingway saw published, <i>The Old Man and the Sea<\/i> has proved itself to be one of the enduring works of American fiction. It is the story of an old Cuban fisherman and his supreme ordeal: a relentless, agonizing battle with a giant marlin far out in the Gulf Stream. Using the simple, powerful language of a fable, Hemingway takes the timeless themes of courage in the face of defeat and personal triumph won from loss and transforms them into a magnificent twentieth-century classic.",
+    "trackName":"The Old Man and the Sea",
+    "trackId":381645838,
+    "formattedPrice":"$9.99",
+    "releaseDate":"2002-07-25T07:00:00Z",
+    "artistIds":[2122513],
+    "genreIds":["10042", "38", "9031", "10049"],
+    "averageUserRating":4.5,
+    "userRatingCount":660
+}
+
