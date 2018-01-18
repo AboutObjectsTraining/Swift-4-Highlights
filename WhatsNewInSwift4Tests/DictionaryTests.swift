@@ -3,16 +3,6 @@
 
 import XCTest
 
-struct GroceryItem {
-    var name: String
-    var count: Int
-}
-
-//let items = [
-//    GroceryItem(name: "Milk", count: 3),
-//    GroceryItem(name: "Bread", count: 2)
-//]
-
 let books = [
     "Emma": 11.95,
     "Henry V": 14.99,
@@ -38,13 +28,6 @@ extension Dictionary where Value == [(key: String, value: Double)] {
         }
     }
 }
-//extension Array where Element == Dictionary<String, Double> {
-//    func printValuesAsCurrency() {
-//        for value in self {
-//            value.printValuesAsCurrency()
-//        }
-//    }
-//}
 
 class DictionaryTests: XCTestCase
 {
@@ -59,7 +42,7 @@ class DictionaryTests: XCTestCase
     
     func testAccessElementsByPositions() {
         guard let index = books.index(forKey: "Emma") else { fatalError() }
-        print(books[index])
+        print(books.values[index])
     }
 
     // In Swift 3, Dictionary's `filter()` method returned an
@@ -91,7 +74,7 @@ With discount
     
     // Takes a closure argument that defines how the items in the provided dictionary
     // should be grouped in the new dictionary. The result is a dictionary whose values
-    // are arrays of dictionaries.
+    // are arrays of key-value tuples.
     func testGrouping() {
         let booksGroupedByPrice = Dictionary(grouping: books, by: { $0.value } )
         booksGroupedByPrice.printValuesAsCurrency()
@@ -116,6 +99,97 @@ With discount
         for key in keys {
             discountedBooks[key, default: 0] *= 0.9
         }
+        print(discountedBooks)
         discountedBooks.printValuesAsCurrency()
+    }
+}
+
+
+let personal = ["home": "703-333-4567", "cell": "202-444-1234"]
+let work1 = ["main": "571-222-9876", "mobile": "703-987-5678"]
+let work2 = ["main": "571-222-9876", "cell": "703-987-5678"]
+
+extension DictionaryTests
+{
+    func testMerge() {
+        let p1: [String: Any] = personal.merging(work1) { first, _ in first }
+        print(p1)
+        
+        var phones1 = personal
+        phones1.merge(work1) { "\($0),\($1)" }
+        print(phones1)
+        
+        var phones2 = personal
+        phones2.merge(work2) { _, new in new }
+        print(phones2)
+        
+        var phones3 = personal
+        phones3.merge(work2) { "personal: \($0), work: \($1)" }
+        print(phones3)
+        
+        var phones4: [String: Any] = personal
+        phones4.merge(work2) { (personal: $0, work: $1) }
+        print(phones4)
+    }
+}
+
+let bookDict: [String: Any] = ["title": "Book Title", "year": 1999]
+
+extension DictionaryTests
+{
+    
+    func testContainsKey() throws {
+        let key = bookDict.keys.first!
+        XCTAssertTrue(bookDict.keys.contains(key))
+    }
+    
+    func testObtainIndexOfKey() throws {
+        let index = bookDict.index(forKey: "year")!
+        let value = bookDict.values[index] as? String
+        XCTAssertEqual(value, bookDict["year"] as? String)
+    }
+    
+    func testSubscriptWithIndex() throws {
+        let index = bookDict.index(forKey: "year")!
+        let entry = bookDict[index]
+        print(entry)
+        let key = bookDict.keys[index]
+        print(key)
+        let value = bookDict.values[index]
+        print(value)
+    }
+    
+    func testMutateNestedArray() {
+        // NOTE: This works without casts for strongly typed dictionaries
+        // (e.g., the following dictionary's type is `[String: [String]]`).
+        //
+        var dict = [
+            "cats": ["leo", "tiger"],
+            "dogs": ["spot", "rover"]
+        ]
+        
+        dict["cats"]?.append("kitty")
+        
+        print(dict)
+        XCTAssertEqual(dict["cats"]!.count, 3)
+        
+        let dogsKey = "dogs"
+        let dogName = "fido"
+        
+        // Append to existing value if present; otherwise, add new element
+        // Swift 3:
+        //
+        // if let index = dict.index(forKey: "dogs") {
+        //     dict.values[index].append(dogName)
+        // } else {
+        //     dict[dogsKey] = [dogName]
+        // }
+        //
+        // Swift 4:
+        //
+        dict[dogsKey, default: [String]()].append(dogName)
+        
+        print(dict)
+        XCTAssertEqual(dict[dogsKey]!.count, 3)
     }
 }

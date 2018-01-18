@@ -10,7 +10,17 @@
 		B46711D91FA238E100F2984A /* WhatsNewInSwift4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46711CF1FA238E000F2984A /* WhatsNewInSwift4.framework */; };
 		B46711EA1FA2393500F2984A /* DictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46711E91FA2393500F2984A /* DictionaryTests.swift */; };
 		B46711EC1FA23A7A00F2984A /* WhatsNewInSwift4.h in Headers */ = {isa = PBXBuildFile; fileRef = B46711EB1FA23A7A00F2984A /* WhatsNewInSwift4.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4DD2DED1FA756ED00F6C69A /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD2DEC1FA756ED00F6C69A /* Book.swift */; };
+		B4C4D0FC2011413700184174 /* Ebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D0FB2011413700184174 /* Ebook.swift */; };
+		B4C4D0FE2011419E00184174 /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D0FD2011419E00184174 /* Rating.swift */; };
+		B4C4D101201142B000184174 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D0FF201142B000184174 /* Author.swift */; };
+		B4C4D102201142B000184174 /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D100201142B000184174 /* Book.swift */; };
+		B4C4D104201142E600184174 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D103201142E600184174 /* Person.swift */; };
+		B4C4D106201142EE00184174 /* CoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D105201142EE00184174 /* CoderTests.swift */; };
+		B4C4D1082011431A00184174 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D1072011431A00184174 /* Constants.swift */; };
+		B4C4D10A2011437300184174 /* Ebook2.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C4D1092011437300184174 /* Ebook2.swift */; };
+		B4C4D10D2011459900184174 /* ebook.json in Resources */ = {isa = PBXBuildFile; fileRef = B4C4D10C2011459900184174 /* ebook.json */; };
+		B4D4CB0F1FB5032500F54F3B /* MiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D4CB0E1FB5032500F54F3B /* MiscTests.swift */; };
+		B4DD2DED1FA756ED00F6C69A /* Novel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD2DEC1FA756ED00F6C69A /* Novel.swift */; };
 		B4DD2DEF1FA7579E00F6C69A /* BookDictionaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD2DEE1FA7579E00F6C69A /* BookDictionaryTests.swift */; };
 		B4DD2DF11FAA10D700F6C69A /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DD2DF01FAA10D700F6C69A /* StringTests.swift */; };
 		B4EBF2211FACD73D00B01716 /* KeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EBF2201FACD73D00B01716 /* KeyPathTests.swift */; };
@@ -33,7 +43,18 @@
 		B46711DF1FA238E100F2984A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B46711E91FA2393500F2984A /* DictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTests.swift; sourceTree = "<group>"; };
 		B46711EB1FA23A7A00F2984A /* WhatsNewInSwift4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsNewInSwift4.h; sourceTree = "<group>"; };
-		B4DD2DEC1FA756ED00F6C69A /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		B4C4D0FB2011413700184174 /* Ebook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ebook.swift; sourceTree = "<group>"; };
+		B4C4D0FD2011419E00184174 /* Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		B4C4D0FF201142B000184174 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		B4C4D100201142B000184174 /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		B4C4D103201142E600184174 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		B4C4D105201142EE00184174 /* CoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoderTests.swift; sourceTree = "<group>"; };
+		B4C4D1072011431A00184174 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B4C4D1092011437300184174 /* Ebook2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ebook2.swift; sourceTree = "<group>"; };
+		B4C4D10B2011457100184174 /* Coding.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Coding.playground; sourceTree = "<group>"; };
+		B4C4D10C2011459900184174 /* ebook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ebook.json; sourceTree = "<group>"; };
+		B4D4CB0E1FB5032500F54F3B /* MiscTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscTests.swift; sourceTree = "<group>"; };
+		B4DD2DEC1FA756ED00F6C69A /* Novel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Novel.swift; sourceTree = "<group>"; };
 		B4DD2DEE1FA7579E00F6C69A /* BookDictionaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDictionaryTests.swift; sourceTree = "<group>"; };
 		B4DD2DF01FAA10D700F6C69A /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		B4EBF2201FACD73D00B01716 /* KeyPathTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathTests.swift; sourceTree = "<group>"; };
@@ -61,6 +82,7 @@
 		B46711C51FA238E000F2984A = {
 			isa = PBXGroup;
 			children = (
+				B4C4D10B2011457100184174 /* Coding.playground */,
 				B46711D11FA238E000F2984A /* WhatsNewInSwift4 */,
 				B46711DC1FA238E100F2984A /* WhatsNewInSwift4Tests */,
 				B46711D01FA238E000F2984A /* Products */,
@@ -79,7 +101,13 @@
 		B46711D11FA238E000F2984A /* WhatsNewInSwift4 */ = {
 			isa = PBXGroup;
 			children = (
-				B4DD2DEC1FA756ED00F6C69A /* Book.swift */,
+				B4C4D0FF201142B000184174 /* Author.swift */,
+				B4C4D100201142B000184174 /* Book.swift */,
+				B4DD2DEC1FA756ED00F6C69A /* Novel.swift */,
+				B4C4D0FB2011413700184174 /* Ebook.swift */,
+				B4C4D1092011437300184174 /* Ebook2.swift */,
+				B4C4D0FD2011419E00184174 /* Rating.swift */,
+				B4C4D103201142E600184174 /* Person.swift */,
 				B46711EB1FA23A7A00F2984A /* WhatsNewInSwift4.h */,
 				B46711D31FA238E000F2984A /* Info.plist */,
 			);
@@ -89,7 +117,11 @@
 		B46711DC1FA238E100F2984A /* WhatsNewInSwift4Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B4C4D10C2011459900184174 /* ebook.json */,
+				B4C4D1072011431A00184174 /* Constants.swift */,
 				B46711E91FA2393500F2984A /* DictionaryTests.swift */,
+				B4C4D105201142EE00184174 /* CoderTests.swift */,
+				B4D4CB0E1FB5032500F54F3B /* MiscTests.swift */,
 				B4DD2DEE1FA7579E00F6C69A /* BookDictionaryTests.swift */,
 				B4DD2DF01FAA10D700F6C69A /* StringTests.swift */,
 				B4EBF2201FACD73D00B01716 /* KeyPathTests.swift */,
@@ -199,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4C4D10D2011459900184174 /* ebook.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,7 +242,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4DD2DED1FA756ED00F6C69A /* Book.swift in Sources */,
+				B4C4D104201142E600184174 /* Person.swift in Sources */,
+				B4C4D0FE2011419E00184174 /* Rating.swift in Sources */,
+				B4C4D0FC2011413700184174 /* Ebook.swift in Sources */,
+				B4C4D101201142B000184174 /* Author.swift in Sources */,
+				B4C4D102201142B000184174 /* Book.swift in Sources */,
+				B4C4D10A2011437300184174 /* Ebook2.swift in Sources */,
+				B4DD2DED1FA756ED00F6C69A /* Novel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,8 +257,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4DD2DEF1FA7579E00F6C69A /* BookDictionaryTests.swift in Sources */,
+				B4C4D106201142EE00184174 /* CoderTests.swift in Sources */,
 				B4DD2DF11FAA10D700F6C69A /* StringTests.swift in Sources */,
+				B4D4CB0F1FB5032500F54F3B /* MiscTests.swift in Sources */,
 				B4EBF2211FACD73D00B01716 /* KeyPathTests.swift in Sources */,
+				B4C4D1082011431A00184174 /* Constants.swift in Sources */,
 				B46711EA1FA2393500F2984A /* DictionaryTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

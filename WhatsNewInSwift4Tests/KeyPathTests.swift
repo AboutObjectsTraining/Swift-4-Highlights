@@ -4,7 +4,7 @@
 import XCTest
 @testable import WhatsNewInSwift4
 
-struct Person {
+struct Contact {
     var name: String
     var address: Address
 }
@@ -16,28 +16,51 @@ struct Address: CustomStringConvertible {
     }
 }
 
-private let person = Person(name: "Fred", address: Address(street: "42 Maple St.", city: "Reston"))
-private let nameKeyPath = \Person.name
-private let cityKeyPath = \Person.address.city
+private let person = Contact(name: "Fred", address: Address(street: "42 Maple St.", city: "Reston"))
+private let nameKeyPath = \Contact.name
+private let cityKeyPath = \Contact.address.city
 
 class KeyPathTests: XCTestCase
 {
     override func setUp() { super.setUp(); print() }
     override func tearDown() { print(); super.tearDown() }
     
+    
+    func testExampleCode() {
+        let address = Address(street: "21 Elm", city: "Reston")
+        var mutablePerson = Contact(name: "Jo", address: address)
+        mutablePerson[keyPath: \Contact.name] = "Kay"
+        mutablePerson[keyPath: \Contact.address.city] = "Herndon"
+        print(mutablePerson)
+        
+        let person = Contact(name: "Jo", address: address)
+        let keyPaths = [\Contact.name,
+                        \Contact.address.city,
+                        \Contact.address.street]
+        
+        let values = keyPaths.map { person[keyPath: $0] }
+        print(values)
+        
+        let name = person[keyPath: \Contact.name]
+        print(name)
+        
+        let city = person[keyPath: \Contact.address.city]
+        print(city)
+}
+    
     func testValueForKey() {
-        let book: Book = Book(title: "Emma", author: .austen, rating: .five)
-        let rating = book[keyPath: \Book.rating]
+        let book: Novel = Novel(title: "Emma", author: .austen, rating: .five)
+        let rating = book[keyPath: \Novel.rating]
         print(rating)
     }
 
     func testValueForKeyPath() {
-        let city = person[keyPath: \Person.address.city]
+        let city = person[keyPath: cityKeyPath]
         print(city)
     }
 
     func testStoredKeyPath() {
-        let keyPaths = [\Person.name, \Person.address.city, \Person.address.street]
+        let keyPaths = [\Contact.name, \Contact.address.city, \Contact.address.street]
         
         for currKeyPath in keyPaths {
             print(person[keyPath: currKeyPath])
@@ -55,6 +78,7 @@ class KeyPathTests: XCTestCase
     func testSetValueForKey() {
         var mutablePerson = person
         mutablePerson[keyPath: nameKeyPath] = "Jan"
+        mutablePerson[keyPath: cityKeyPath] = "Herndon"
         print(mutablePerson)
     }
     

@@ -5,9 +5,8 @@
 
 import Foundation
 
-struct Book: Codable {
-    var title: String
-    var year: Int?
-    var favorite: Bool = false
-    var rating: Rating
+struct Author: Codable {
+    var firstName: String?
+    var lastName: String?
+    var books: [Book]?
 }

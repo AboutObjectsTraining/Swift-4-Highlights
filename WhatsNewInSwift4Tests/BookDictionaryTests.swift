@@ -6,11 +6,11 @@ import XCTest
 
 class BookDictionaryTests: XCTestCase
 {
-    let books = [Book(title: "The Time Machine", author: .wells, rating: .three),
-                 Book(title: "The Dream", author: .wells, rating: .two),
-                 Book(title: "Emma", author: .austen, rating: .five),
-                 Book(title: "Mansfield Park", author: .austen, rating: .four),
-                 Book(title: "A Farewell to Arms", author: .hemingway, rating: .four)]
+    let books = [Novel(title: "The Time Machine", author: .wells, rating: .three),
+                 Novel(title: "The Dream", author: .wells, rating: .two),
+                 Novel(title: "Emma", author: .austen, rating: .five),
+                 Novel(title: "Mansfield Park", author: .austen, rating: .four),
+                 Novel(title: "A Farewell to Arms", author: .hemingway, rating: .four)]
 
     override func setUp() {
         super.setUp()

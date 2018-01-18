@@ -6,11 +6,10 @@
 
 Demonstrates new capabilities in Swift 4, including:
 
-* Dictionary and Set improvements
+* String enhancements
+* Dictionary improvements
 * Smart key paths
-* Key-Value Coding (KVC) enhancements
 * JSON encoding and decoding
-* Key-Value Observing (KVO) enhancements
 
 ## Author
 
