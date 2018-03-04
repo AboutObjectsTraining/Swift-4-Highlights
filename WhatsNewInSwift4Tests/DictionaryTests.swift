@@ -133,11 +133,17 @@ extension DictionaryTests
     }
 }
 
-let bookDict: [String: Any] = ["title": "Book Title", "year": 1999]
+let bookDict: [String: Any] = ["title": "Book Title", "year": 1999, "author": "Plato"]
+
+extension Dictionary.Index {
+    public var description: String {
+        let substrings = String(describing: self).split(separator: "(")
+        return String(substrings.last!.dropLast(3))
+    }
+}
 
 extension DictionaryTests
 {
-    
     func testContainsKey() throws {
         let key = bookDict.keys.first!
         XCTAssertTrue(bookDict.keys.contains(key))
@@ -149,8 +155,18 @@ extension DictionaryTests
         XCTAssertEqual(value, bookDict["year"] as? String)
     }
     
+    func testIndexes() {
+        let titleIndex = bookDict.index(forKey: "title")!
+        print(titleIndex.description)
+        let yearIndex = bookDict.index(forKey: "year")!
+        print(yearIndex.description)
+        let authorIndex = bookDict.index(forKey: "author")!
+        print(authorIndex.description)
+    }
+    
     func testSubscriptWithIndex() throws {
         let index = bookDict.index(forKey: "year")!
+        print(index.description)
         let entry = bookDict[index]
         print(entry)
         let key = bookDict.keys[index]
