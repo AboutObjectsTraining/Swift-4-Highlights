@@ -12,10 +12,23 @@ footer: Copyright © 2018, [About Objects, Inc.](http://www.aboutobjects.com)
 ---
 ## About Objects
 [.hide-footer]
+
 * Reston, VA
-* Full-stack consulting (NFL, Marriott, Chicos, etc.) and training 
-* Roots in NeXT, OpenStep, WebObjects + enterprise middleware and backend
-* iOS from day one
+* Full-stack consulting (NFL, Marriott, Chicos, etc.) and training
+* Strong focus on iOS and middleware
+* Roots in NeXT, OpenStep, WebObjects + enterprise backends
+
+---
+## Resources
+
+GitHub.com/AboutObjectsTraining
+
+* [Swift 4 Highlights](https://github.com/AboutObjectsTraining/Swift-4-Highlights)
+* [Swift 3 Lowlights](https://github.com/AboutObjectsTraining/Swift-3-Lowlights)
+
+Ole Begemann (oleb.net/blog)
+
+* [Playground: What's new in Swift 4](https://oleb.net/blog/2017/05/whats-new-in-swift-4-playground/)
 
 ---
 ## Swift 4 Overview
@@ -50,12 +63,79 @@ footer: Copyright © 2018, [About Objects, Inc.](http://www.aboutobjects.com)
 	* ❌ Potential memory leak
 
 ---
+## Swift 3 String API Clutziness
+
+```swift, [.highlight: 1-7]
+let stars = "✭✭✭✭✭✩✩✩✩✩"
+let charView1 = stars.characters.dropFirst(2)
+print(charView1)
+// CharacterView(_core:  
+// Swift._StringCore(_baseAddress: Optional(0x0000000101362454),
+// _countAndFlags: 9223372036854775816, _owner: nil), _coreOffset: 2)
+
+let charView2 = charView1.dropLast(3)
+// Still a CharacterView 🤢
+print(String(charView2))
+// ✭✭✭✩✩
+
+// Swift 4
+print(stars.dropFirst(2).dropLast(3))
+// ✭✭✭✩✩
+
+```
+
+---
+## Swift 3 String API Clutziness
+
+```swift, [.highlight: 8-12]
+let stars = "✭✭✭✭✭✩✩✩✩✩"
+let charView1 = stars.characters.dropFirst(2)
+print(charView1)
+// CharacterView(_core:  
+// Swift._StringCore(_baseAddress: Optional(0x0000000101362454),
+// _countAndFlags: 9223372036854775816, _owner: nil), _coreOffset: 2)
+
+let charView2 = charView1.dropLast(3)
+// Still a CharacterView 🤢
+print(String(charView2))
+// ✭✭✭✩✩
+
+// Swift 4
+print(stars.dropFirst(2).dropLast(3))
+// ✭✭✭✩✩
+
+```
+
+---
+## Swift 3 String API Clutziness
+
+```swift, [.highlight: 13-16]
+let stars = "✭✭✭✭✭✩✩✩✩✩"
+let charView1 = stars.characters.dropFirst(2)
+print(charView1)
+// CharacterView(_core:  
+// Swift._StringCore(_baseAddress: Optional(0x0000000101362454),
+// _countAndFlags: 9223372036854775816, _owner: nil), _coreOffset: 2)
+
+let charView2 = charView1.dropLast(3)
+// Still a CharacterView 🤢
+print(String(charView2))
+// ✭✭✭✩✩
+
+// Swift 4
+print(stars.dropFirst(2).dropLast(3))
+// ✭✭✭✩✩
+
+```
+
+---
 ## Swift 4 Strings ([SE-0163](https://github.com/apple/swift-evolution/blob/master/proposals/0163-string-revision-1.md))
 
 * Adds back `Collection` conformance and deprecates `characters` property
 * Adds `Substring` type 
 	* Prevents leaks by helping developers avoid accidental storage of `Substring` instances
 	* `String` and `Substring` share API by conforming to `StringProtocol`
+
 
 ---
 ## String Collection API Examples
@@ -102,28 +182,36 @@ name.insert(contentsOf: " W.", at: index)
 ---
 ## Substring Example
 
-```swift, [.highlight: 1-3]
+```swift, [.highlight: 1-5]
 
 let name = "Fred Smith"
 let last: Substring = name.dropFirst(5)
+// type ^^^^^^^^^^^ shown for clarity
 print(last) // "Smith"
     
-let first = name.dropLast(6)
-print(first) // "Fred
+struct Dude {
+    var name: String?
+}
+var dude = Dude()
+dude.name = name // 🚫 Doesn't compile
 
 ```
 
 ---
 ## Substring Example
 
-```swift, [.highlight: 5-6]
+```swift, [.highlight: 6-11]
 
 let name = "Fred Smith"
 let last: Substring = name.dropFirst(5)
+// type ^^^^^^^^^^^ shown for clarity
 print(last) // "Smith"
     
-let first = name.dropLast(6)
-print(first) // "Fred
+struct Dude {
+    var name: String?
+}
+var dude = Dude()
+dude.name = name // 🚫 Doesn't compile
 
 ```
 
@@ -178,7 +266,7 @@ print(tail) // "🌎!"
 	* Faster key lookups
 	* More effecient value mutation
 
-```swift, [.highlight: 1-5]
+```swift
 let books = ["Emma": 11.95, "Henry V": 14.99,
              "1984": 14.99, "Utopia": 11.95]
 
@@ -195,7 +283,7 @@ print(books.values[index])
 * Merging dictionaries
 
 ---
-## Dictionary-Specific Map and Filter
+## Dictionary-Specific Filter
 
 ```swift, [.highlight: 1-8]
 let books = ["Emma": 11.95, "Henry V": 14.99,
@@ -204,19 +292,21 @@ let books = ["Emma": 11.95, "Henry V": 14.99,
 // In Swift 3, Dictionary's `filter` method returned an
 // array of key-value tuples instead of a dictionary.
 let cheapBooks = books.filter { $0.value < 12.00 }
-// ["Utopia": 11.95, "Emma": 11.95]
+// [(key: "Utopia", value: 11.95), (key: "Emma", value: 11.95)]
 
-// Similarly, Dictionary's `map` method returns an array of values,
-// but Swift 4 adds `mapValues`, which returns a Dictionary.
-let discount = 0.10
-let discountedBooks = books.mapValues { $0 * (1 - discount) }
-// ["Utopia": 10.75, "1984": 13.49, "Emma": 10.75, "Henry V": 13.49]
+// If you need a Dictionary result, you have to produce one manually
+let cheapBooksDict = cheapBooks.reduce([:]) {
+    var dict = $0
+    dict[$1.key] = $1.value
+    return dict
+}
+// ["Utopia": 11.95, "Emma": 11.95]
 
 ```
 ---
-## Dictionary-Specific Map and Filter
+## Dictionary-Specific Filter
 
-```swift, [.highlight: 9-14]
+```swift, [.highlight: 9-15]
 let books = ["Emma": 11.95, "Henry V": 14.99,
              "1984": 14.99, "Utopia": 11.95]
              
@@ -225,13 +315,82 @@ let books = ["Emma": 11.95, "Henry V": 14.99,
 let cheapBooks = books.filter { $0.value < 12.00 }
 // ["Utopia": 11.95, "Emma": 11.95]
 
-// Similarly, Dictionary's `map` method returns an array of values,
-// but Swift 4 adds `mapValues`, which returns a Dictionary.
+// If you need a Dictionary result, you have to produce one manually
+let cheapBooksDict = cheapBooks.reduce([:]) {
+    var dict = $0
+    dict[$1.key] = $1.value
+    return dict
+}
+// ["Utopia": 11.95, "Emma": 11.95]
+
+```
+
+---
+## Dictionary-Specific Map
+
+```swift, [.highlight: 1-7]
+
+let books = ["Emma": 11.95, "Henry V": 14.99,
+             "1984": 14.99, "Utopia": 11.95]
+
+// Similarly, Dictionary's `map` method returns an array of values
+let discount = 0.10
+let discountedPrices = books.map { $0.value * (1 - discount) }
+// [10.75, 13.49, 10.75, 13.49]
+
+// That's fine if you simply want to sum the values, but suppose
+// you want to produce a list of discounted prices?
+
+// Swift 4 adds `mapValues`, which returns a Dictionary
 let discount = 0.10
 let discountedBooks = books.mapValues { $0 * (1 - discount) }
 // ["Utopia": 10.75, "1984": 13.49, "Emma": 10.75, "Henry V": 13.49]
 
 ```
+---
+## Dictionary-Specific Map
+
+```swift, [.highlight: 9-11]
+
+let books = ["Emma": 11.95, "Henry V": 14.99,
+             "1984": 14.99, "Utopia": 11.95]
+
+// Similarly, Dictionary's `map` method returns an array of values
+let discount = 0.10
+let discountedPrices = books.map { $0.value * (1 - discount) }
+// [10.75, 13.49, 10.75, 13.49]
+
+// That's fine if you simply want to sum the values, but suppose
+// you want to produce a list of discounted prices?
+
+// Swift 4 adds `mapValues`, which returns a Dictionary
+let discount = 0.10
+let discountedBooks = books.mapValues { $0 * (1 - discount) }
+// ["Utopia": 10.75, "1984": 13.49, "Emma": 10.75, "Henry V": 13.49]
+
+```
+---
+## Dictionary-Specific Map
+
+```swift, [.highlight: 12-15]
+let books = ["Emma": 11.95, "Henry V": 14.99,
+             "1984": 14.99, "Utopia": 11.95]
+
+// Similarly, Dictionary's `map` method returns an array of values
+let discount = 0.10
+let discountedPrices = books.map { $0.value * (1 - discount) }
+// [10.75, 13.49, 10.75, 13.49]
+
+// That's fine if you simply want to sum the values, but suppose
+// you want to produce a list of discounted prices?
+
+// Swift 4 adds `mapValues`, which returns a Dictionary
+let discount = 0.10
+let discountedBooks = books.mapValues { $0 * (1 - discount) }
+// ["Utopia": 10.75, "1984": 13.49, "Emma": 10.75, "Henry V": 13.49]
+
+```
+
 
 ---
 ## Grouping Sequence Elements
@@ -493,22 +652,21 @@ struct Dog: Codable {
 | Swift Standard Library | Foundation |
 | --- | --- |
 | `JSONEncoder` | `NSJSONSerialization` |
-| `PropertyListEncoder` | `NSPropertyListSerialization` |
 | `JSONDecoder` | `NSJSONSerialization` |
+| `PropertyListEncoder` | `NSPropertyListSerialization` |
 | `PropertyListDecoder` | `NSPropertyListSerialization` |
 
 ---
 ## Encoding to JSON
 
-```swift, [.highlight: 1]
+```swift, [.highlight: 1-2]
 let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
 
 let fred = Person(name: "Fred", age: 30, dog:
     Dog(name: "Spot", breed: .beagle))
 
 let data = try! encoder.encode(fred)
-// Resulting JSON:
-
 ```
 ```json, [.highlight: 0]
 {
@@ -523,15 +681,14 @@ let data = try! encoder.encode(fred)
 ---
 ## Encoding to JSON
 
-```swift, [.highlight: 3-4]
+```swift, [.highlight: 4-5]
 let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
 
 let fred = Person(name: "Fred", age: 30, dog:
     Dog(name: "Spot", breed: .beagle))
 
 let data = try! encoder.encode(fred)
-// Resulting JSON:
-
 ```
 ```json, [.highlight: 0]
 {
@@ -546,15 +703,14 @@ let data = try! encoder.encode(fred)
 ---
 ## Encoding to JSON
 
-```swift, [.highlight: 6-9]
+```swift, [.highlight: 7-10]
 let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
 
 let fred = Person(name: "Fred", age: 30, dog:
     Dog(name: "Spot", breed: .beagle))
 
 let data = try! encoder.encode(fred)
-// Resulting JSON:
-
 ```
 ```json
 {
@@ -607,6 +763,7 @@ let fredsClone = try! decoder.decode(Person.self, from: data)
 [.hide-footer]
 ![inline 300%](images/Logo-White.eps)
 
+<!--
 ---
 # Consulting Positions
 [.hide-footer]
@@ -614,6 +771,7 @@ let fredsClone = try! decoder.decode(Person.self, from: data)
 * Android
 * Middleware – Ruby and Java
 * Backend – Java
+-->
 
 ---
 #  Upcoming Classes
@@ -622,9 +780,8 @@ View online: [Public schedule](www.aboutobjects.com/training/schedule.html)
 
 | Date | Title |
 | --- | --- | 
-| Feb 3 – 9 | iOS Development in Swift: Comprehensive |
-| Feb 24 – Mar 2 | iOS Development in Objective-C: Comprehensive |
 | Mar 12 – 14 | Transitioning to Swift |
+| Apr 14 – Apr 20 | iOS Development in Swift: Comprehensive |
 | Apr 30 – May 4 | Advanced iOS Development
 
 ---

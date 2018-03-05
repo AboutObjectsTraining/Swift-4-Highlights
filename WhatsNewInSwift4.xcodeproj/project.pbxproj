@@ -51,7 +51,7 @@
 		B4C4D105201142EE00184174 /* CoderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoderTests.swift; sourceTree = "<group>"; };
 		B4C4D1072011431A00184174 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B4C4D1092011437300184174 /* Ebook2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ebook2.swift; sourceTree = "<group>"; };
-		B4C4D10B2011457100184174 /* Coding.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Coding.playground; sourceTree = "<group>"; };
+		B4C4D10B2011457100184174 /* Coding.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Coding.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		B4C4D10C2011459900184174 /* ebook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ebook.json; sourceTree = "<group>"; };
 		B4D4CB0E1FB5032500F54F3B /* MiscTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscTests.swift; sourceTree = "<group>"; };
 		B4DD2DEC1FA756ED00F6C69A /* Novel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Novel.swift; sourceTree = "<group>"; };

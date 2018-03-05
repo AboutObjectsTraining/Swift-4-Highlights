@@ -7,6 +7,14 @@ import XCTest
 struct Contact {
     var name: String
     var address: Address
+    var workAddress: Address?
+    var pets: [Pet]
+    
+    init(name: String, address: Address, pets: [Pet] = []) {
+        self.name = name
+        self.address = address
+        self.pets = pets
+    }
 }
 struct Address: CustomStringConvertible {
     var street: String
@@ -14,6 +22,11 @@ struct Address: CustomStringConvertible {
     var description: String {
         return "\(type(of: self))(street: \"\(street)\", city: \"\(city)\")"
     }
+}
+
+struct Pet {
+    var name: String
+    var breed: String
 }
 
 private let person = Contact(name: "Fred", address: Address(street: "42 Maple St.", city: "Reston"))
@@ -24,19 +37,51 @@ class KeyPathTests: XCTestCase
 {
     override func setUp() { super.setUp(); print() }
     override func tearDown() { print(); super.tearDown() }
+
+    func testOptionalProperties() {
+        let address = Address(street: "21 Elm", city: "Reston")
+        let pets = [Pet(name: "Spot", breed: "Collie"), Pet(name: "Tiger", breed: "Siamese")]
+        var contact = Contact(name: "Jo", address: address, pets: pets)
+        print (contact[keyPath: \Contact.workAddress?.city] ?? "N/A")
+        
+        contact[keyPath: \Contact.workAddress] = Address(street: "32 Pine", city: "Reston")
+        print (contact[keyPath: \Contact.workAddress?.city] ?? "N/A")
+    }
     
+    func testSubscripts() {
+        let address = Address(street: "21 Elm", city: "Reston")
+        let pets = [Pet(name: "Spot", breed: "Collie"), Pet(name: "Tiger", breed: "Siamese")]
+        var contact = Contact(name: "Jo", address: address, pets: pets)
+        print(contact[keyPath: \Contact.pets[1].breed])
+        contact[keyPath: \Contact.pets[1].breed] = "Persian"
+        print(contact[keyPath: \Contact.pets[1].breed])
+    }
+    
+    func testCombiningKeyPaths() {
+        let address = Address(street: "21 Elm", city: "Reston")
+        let pets = [Pet(name: "Spot", breed: "Collie"), Pet(name: "Tiger", breed: "Siamese")]
+        var contact = Contact(name: "Jo", address: address, pets: pets)
+        
+        let petsKeyPath = \Contact.pets[1]
+        let breedKeyPath: WritableKeyPath<Pet, String> = \.breed
+        let combinedKeyPath = petsKeyPath.appending(path: breedKeyPath)
+        
+        print(contact[keyPath: combinedKeyPath])
+        contact[keyPath: combinedKeyPath] = "Persian"
+        print(contact[keyPath: combinedKeyPath])
+    }
     
     func testExampleCode() {
         let address = Address(street: "21 Elm", city: "Reston")
-        var mutablePerson = Contact(name: "Jo", address: address)
-        mutablePerson[keyPath: \Contact.name] = "Kay"
-        mutablePerson[keyPath: \Contact.address.city] = "Herndon"
-        print(mutablePerson)
+        var contact = Contact(name: "Jo", address: address)
+        contact[keyPath: \Contact.name] = "Kay"
+        contact[keyPath: \Contact.address.city] = "Herndon"
+        print(contact)
         
         let person = Contact(name: "Jo", address: address)
         let keyPaths = [\Contact.name,
-                        \Contact.address.city,
-                        \Contact.address.street]
+                        \.address.city,
+                        \.address.street]
         
         let values = keyPaths.map { person[keyPath: $0] }
         print(values)
