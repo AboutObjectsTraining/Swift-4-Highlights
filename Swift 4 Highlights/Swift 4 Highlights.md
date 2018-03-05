@@ -195,7 +195,7 @@ print(books.values[index])
 * Merging dictionaries
 
 ---
-## Dictionary-Specific Map and Filter
+## Dictionary-Specific Filter
 
 ```swift, [.highlight: 1-8]
 let books = ["Emma": 11.95, "Henry V": 14.99,
@@ -204,19 +204,21 @@ let books = ["Emma": 11.95, "Henry V": 14.99,
 // In Swift 3, Dictionary's `filter` method returned an
 // array of key-value tuples instead of a dictionary.
 let cheapBooks = books.filter { $0.value < 12.00 }
-// ["Utopia": 11.95, "Emma": 11.95]
+// [(key: "Utopia", value: 11.95), (key: "Emma", value: 11.95)]
 
-// Similarly, Dictionary's `map` method returns an array of values,
-// but Swift 4 adds `mapValues`, which returns a Dictionary.
-let discount = 0.10
-let discountedBooks = books.mapValues { $0 * (1 - discount) }
-// ["Utopia": 10.75, "1984": 13.49, "Emma": 10.75, "Henry V": 13.49]
+// If you need a Dictionary result, you have to produce one manually
+let cheapBooksDict = cheapBooks.reduce([:]) {
+    var dict = $0
+    dict[$1.key] = $1.value
+    return dict
+}
+// ["Utopia": 11.95, "Emma": 11.95]
 
 ```
 ---
-## Dictionary-Specific Map and Filter
+## Dictionary-Specific Filter
 
-```swift, [.highlight: 9-14]
+```swift, [.highlight: 9-15]
 let books = ["Emma": 11.95, "Henry V": 14.99,
              "1984": 14.99, "Utopia": 11.95]
              
@@ -225,13 +227,82 @@ let books = ["Emma": 11.95, "Henry V": 14.99,
 let cheapBooks = books.filter { $0.value < 12.00 }
 // ["Utopia": 11.95, "Emma": 11.95]
 
-// Similarly, Dictionary's `map` method returns an array of values,
-// but Swift 4 adds `mapValues`, which returns a Dictionary.
+// If you need a Dictionary result, you have to produce one manually
+let cheapBooksDict = cheapBooks.reduce([:]) {
+    var dict = $0
+    dict[$1.key] = $1.value
+    return dict
+}
+// ["Utopia": 11.95, "Emma": 11.95]
+
+```
+
+---
+## Dictionary-Specific Map
+
+```swift, [.highlight: 1-7]
+
+let books = ["Emma": 11.95, "Henry V": 14.99,
+             "1984": 14.99, "Utopia": 11.95]
+
+// Similarly, Dictionary's `map` method returns an array of values
+let discount = 0.10
+let discountedPrices = books.map { $0.value * (1 - discount) }
+// [10.75, 13.49, 10.75, 13.49]
+
+// That's fine if you simply want to sum the values, but suppose
+// you want to produce a list of discounted prices?
+
+// Swift 4 adds `mapValues`, which returns a Dictionary
 let discount = 0.10
 let discountedBooks = books.mapValues { $0 * (1 - discount) }
 // ["Utopia": 10.75, "1984": 13.49, "Emma": 10.75, "Henry V": 13.49]
 
 ```
+---
+## Dictionary-Specific Map
+
+```swift, [.highlight: 9-11]
+
+let books = ["Emma": 11.95, "Henry V": 14.99,
+             "1984": 14.99, "Utopia": 11.95]
+
+// Similarly, Dictionary's `map` method returns an array of values
+let discount = 0.10
+let discountedPrices = books.map { $0.value * (1 - discount) }
+// [10.75, 13.49, 10.75, 13.49]
+
+// That's fine if you simply want to sum the values, but suppose
+// you want to produce a list of discounted prices?
+
+// Swift 4 adds `mapValues`, which returns a Dictionary
+let discount = 0.10
+let discountedBooks = books.mapValues { $0 * (1 - discount) }
+// ["Utopia": 10.75, "1984": 13.49, "Emma": 10.75, "Henry V": 13.49]
+
+```
+---
+## Dictionary-Specific Map
+
+```swift, [.highlight: 12-15]
+let books = ["Emma": 11.95, "Henry V": 14.99,
+             "1984": 14.99, "Utopia": 11.95]
+
+// Similarly, Dictionary's `map` method returns an array of values
+let discount = 0.10
+let discountedPrices = books.map { $0.value * (1 - discount) }
+// [10.75, 13.49, 10.75, 13.49]
+
+// That's fine if you simply want to sum the values, but suppose
+// you want to produce a list of discounted prices?
+
+// Swift 4 adds `mapValues`, which returns a Dictionary
+let discount = 0.10
+let discountedBooks = books.mapValues { $0 * (1 - discount) }
+// ["Utopia": 10.75, "1984": 13.49, "Emma": 10.75, "Henry V": 13.49]
+
+```
+
 
 ---
 ## Grouping Sequence Elements
