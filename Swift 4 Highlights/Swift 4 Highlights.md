@@ -19,6 +19,18 @@ footer: Copyright © 2018, [About Objects, Inc.](http://www.aboutobjects.com)
 * Roots in NeXT, OpenStep, WebObjects + enterprise backends
 
 ---
+## Resources
+
+GitHub.com/AboutObjectsTraining
+
+* [Swift 4 Highlights](https://github.com/AboutObjectsTraining/Swift-4-Highlights)
+* [Swift 3 Lowlights](https://github.com/AboutObjectsTraining/Swift-3-Lowlights)
+
+Ole Begemann (oleb.net/blog)
+
+* [Playground: What's new in Swift 4](https://oleb.net/blog/2017/05/whats-new-in-swift-4-playground/)
+
+---
 ## Swift 4 Overview
 
 ---
@@ -170,28 +182,36 @@ name.insert(contentsOf: " W.", at: index)
 ---
 ## Substring Example
 
-```swift, [.highlight: 1-3]
+```swift, [.highlight: 1-5]
 
 let name = "Fred Smith"
 let last: Substring = name.dropFirst(5)
+// type ^^^^^^^^^^^ shown for clarity
 print(last) // "Smith"
     
-let first = name.dropLast(6)
-print(first) // "Fred
+struct Dude {
+    var name: String?
+}
+var dude = Dude()
+dude.name = name // 🚫 Doesn't compile
 
 ```
 
 ---
 ## Substring Example
 
-```swift, [.highlight: 5-6]
+```swift, [.highlight: 6-11]
 
 let name = "Fred Smith"
 let last: Substring = name.dropFirst(5)
+// type ^^^^^^^^^^^ shown for clarity
 print(last) // "Smith"
     
-let first = name.dropLast(6)
-print(first) // "Fred
+struct Dude {
+    var name: String?
+}
+var dude = Dude()
+dude.name = name // 🚫 Doesn't compile
 
 ```
 
@@ -246,7 +266,7 @@ print(tail) // "🌎!"
 	* Faster key lookups
 	* More effecient value mutation
 
-```swift, [.highlight: 1-5]
+```swift
 let books = ["Emma": 11.95, "Henry V": 14.99,
              "1984": 14.99, "Utopia": 11.95]
 
