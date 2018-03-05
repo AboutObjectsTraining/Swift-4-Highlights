@@ -652,22 +652,21 @@ struct Dog: Codable {
 | Swift Standard Library | Foundation |
 | --- | --- |
 | `JSONEncoder` | `NSJSONSerialization` |
-| `PropertyListEncoder` | `NSPropertyListSerialization` |
 | `JSONDecoder` | `NSJSONSerialization` |
+| `PropertyListEncoder` | `NSPropertyListSerialization` |
 | `PropertyListDecoder` | `NSPropertyListSerialization` |
 
 ---
 ## Encoding to JSON
 
-```swift, [.highlight: 1]
+```swift, [.highlight: 1-2]
 let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
 
 let fred = Person(name: "Fred", age: 30, dog:
     Dog(name: "Spot", breed: .beagle))
 
 let data = try! encoder.encode(fred)
-// Resulting JSON:
-
 ```
 ```json, [.highlight: 0]
 {
@@ -682,15 +681,14 @@ let data = try! encoder.encode(fred)
 ---
 ## Encoding to JSON
 
-```swift, [.highlight: 3-4]
+```swift, [.highlight: 4-5]
 let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
 
 let fred = Person(name: "Fred", age: 30, dog:
     Dog(name: "Spot", breed: .beagle))
 
 let data = try! encoder.encode(fred)
-// Resulting JSON:
-
 ```
 ```json, [.highlight: 0]
 {
@@ -705,15 +703,14 @@ let data = try! encoder.encode(fred)
 ---
 ## Encoding to JSON
 
-```swift, [.highlight: 6-9]
+```swift, [.highlight: 7-10]
 let encoder = JSONEncoder()
+encoder.outputFormatting = .prettyPrinted
 
 let fred = Person(name: "Fred", age: 30, dog:
     Dog(name: "Spot", breed: .beagle))
 
 let data = try! encoder.encode(fred)
-// Resulting JSON:
-
 ```
 ```json
 {
