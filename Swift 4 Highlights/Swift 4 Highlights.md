@@ -678,6 +678,7 @@ let fredsClone = try! decoder.decode(Person.self, from: data)
 [.hide-footer]
 ![inline 300%](images/Logo-White.eps)
 
+<!--
 ---
 # Consulting Positions
 [.hide-footer]
@@ -685,6 +686,7 @@ let fredsClone = try! decoder.decode(Person.self, from: data)
 * Android
 * Middleware – Ruby and Java
 * Backend – Java
+-->
 
 ---
 #  Upcoming Classes
@@ -693,9 +695,8 @@ View online: [Public schedule](www.aboutobjects.com/training/schedule.html)
 
 | Date | Title |
 | --- | --- | 
-| Feb 3 – 9 | iOS Development in Swift: Comprehensive |
-| Feb 24 – Mar 2 | iOS Development in Objective-C: Comprehensive |
 | Mar 12 – 14 | Transitioning to Swift |
+| Apr 14 – Apr 20 | iOS Development in Swift: Comprehensive |
 | Apr 30 – May 4 | Advanced iOS Development
 
 ---
