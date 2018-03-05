@@ -12,10 +12,11 @@ footer: Copyright © 2018, [About Objects, Inc.](http://www.aboutobjects.com)
 ---
 ## About Objects
 [.hide-footer]
+
 * Reston, VA
-* Full-stack consulting (NFL, Marriott, Chicos, etc.) and training 
-* Roots in NeXT, OpenStep, WebObjects + enterprise middleware and backend
-* iOS from day one
+* Full-stack consulting (NFL, Marriott, Chicos, etc.) and training
+* Strong focus on iOS and middleware
+* Roots in NeXT, OpenStep, WebObjects + enterprise backends
 
 ---
 ## Swift 4 Overview
@@ -50,12 +51,79 @@ footer: Copyright © 2018, [About Objects, Inc.](http://www.aboutobjects.com)
 	* ❌ Potential memory leak
 
 ---
+## Swift 3 String API Clutziness
+
+```swift, [.highlight: 1-7]
+let stars = "✭✭✭✭✭✩✩✩✩✩"
+let charView1 = stars.characters.dropFirst(2)
+print(charView1)
+// CharacterView(_core:  
+// Swift._StringCore(_baseAddress: Optional(0x0000000101362454),
+// _countAndFlags: 9223372036854775816, _owner: nil), _coreOffset: 2)
+
+let charView2 = charView1.dropLast(3)
+// Still a CharacterView 🤢
+print(String(charView2))
+// ✭✭✭✩✩
+
+// Swift 4
+print(stars.dropFirst(2).dropLast(3))
+// ✭✭✭✩✩
+
+```
+
+---
+## Swift 3 String API Clutziness
+
+```swift, [.highlight: 8-12]
+let stars = "✭✭✭✭✭✩✩✩✩✩"
+let charView1 = stars.characters.dropFirst(2)
+print(charView1)
+// CharacterView(_core:  
+// Swift._StringCore(_baseAddress: Optional(0x0000000101362454),
+// _countAndFlags: 9223372036854775816, _owner: nil), _coreOffset: 2)
+
+let charView2 = charView1.dropLast(3)
+// Still a CharacterView 🤢
+print(String(charView2))
+// ✭✭✭✩✩
+
+// Swift 4
+print(stars.dropFirst(2).dropLast(3))
+// ✭✭✭✩✩
+
+```
+
+---
+## Swift 3 String API Clutziness
+
+```swift, [.highlight: 13-16]
+let stars = "✭✭✭✭✭✩✩✩✩✩"
+let charView1 = stars.characters.dropFirst(2)
+print(charView1)
+// CharacterView(_core:  
+// Swift._StringCore(_baseAddress: Optional(0x0000000101362454),
+// _countAndFlags: 9223372036854775816, _owner: nil), _coreOffset: 2)
+
+let charView2 = charView1.dropLast(3)
+// Still a CharacterView 🤢
+print(String(charView2))
+// ✭✭✭✩✩
+
+// Swift 4
+print(stars.dropFirst(2).dropLast(3))
+// ✭✭✭✩✩
+
+```
+
+---
 ## Swift 4 Strings ([SE-0163](https://github.com/apple/swift-evolution/blob/master/proposals/0163-string-revision-1.md))
 
 * Adds back `Collection` conformance and deprecates `characters` property
 * Adds `Substring` type 
 	* Prevents leaks by helping developers avoid accidental storage of `Substring` instances
 	* `String` and `Substring` share API by conforming to `StringProtocol`
+
 
 ---
 ## String Collection API Examples
