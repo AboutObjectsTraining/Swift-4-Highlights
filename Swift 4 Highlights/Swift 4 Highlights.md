@@ -6,7 +6,7 @@ footer: Copyright © 2018, [About Objects, Inc.](http://www.aboutobjects.com)
 # [fit]Swift 4
 # [fit]_Highlights_
 <br/>
-#### Jonathan Lehr, Founder and VP, Training
+#### Jonathan Lehr, Co-Founder and VP, Training
 [.hide-footer]
 
 ---
